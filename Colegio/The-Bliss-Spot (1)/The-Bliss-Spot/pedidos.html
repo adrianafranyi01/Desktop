@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pedidos · The Bliss Spot</title>
+  <meta name="description" content="Haz tu pedido en The Bliss Spot: elige tus postres, revisa y envíalo por WhatsApp.">
+  <meta name="theme-color" content="#8e1f3f">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&amp;family=Jost:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body data-page="pedidos">
+  <a class="sr-only" href="#contenido">Saltar al contenido</a>
+  <div id="site-header"></div>
+
+  <main id="contenido">
+    <section class="page-hero">
+      <div class="container">
+        <span class="crumbs">Pedidos</span>
+        <h1>Haz tu pedido</h1>
+        <p>Elige tus postres, completa tus datos y revisa todo antes de enviarlo por WhatsApp.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:10px">
+      <div class="container order-layout">
+        <form id="order-form" novalidate>
+          <div class="panel">
+            <h2>Tus datos</h2>
+            <div class="field-row">
+              <div class="field"><label for="f-nombre">Nombre</label><input class="input" id="f-nombre" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre"><span class="err">Escribe tu nombre.</span></div>
+              <div class="field"><label for="f-telefono">Teléfono</label><input class="input" id="f-telefono" name="telefono" type="tel" autocomplete="tel" placeholder="Tu número de contacto"><span class="err">Escribe un número válido.</span></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h2>Entrega</h2>
+            <div class="field-row">
+              <div class="field"><label for="f-fecha">Fecha de entrega</label><input class="input" id="f-fecha" name="fecha" type="date"><span class="err">Elige la fecha.</span></div>
+              <div class="field"><label for="f-hora">Hora <span class="opt">(opcional)</span></label><input class="input" id="f-hora" name="hora" type="time"></div>
+            </div>
+            <div class="field"><span class="label-like" style="font-weight:500">Modalidad</span>
+              <div class="radio-cards" role="radiogroup" aria-label="Modalidad de entrega">
+                <label class="radio-card"><input type="radio" name="modalidad" value="recoger" checked><span>Recoger</span></label>
+                <label class="radio-card"><input type="radio" name="modalidad" value="entrega"><span>Entrega (a coordinar)</span></label>
+              </div>
+            </div>
+            <div class="field" id="f-direccion-wrap" hidden><label for="f-direccion">Dirección o punto de entrega</label><input class="input" id="f-direccion" name="direccion" type="text" autocomplete="street-address" placeholder="Dirección o referencia"><span class="err">Escribe la dirección.</span></div>
+            <div class="field"><label for="f-comentarios">Comentarios adicionales <span class="opt">(opcional)</span></label><textarea class="textarea" id="f-comentarios" name="comentarios" placeholder="Alguna indicación especial para tu pedido"></textarea></div>
+            <p class="form-note">Los detalles de entrega y el pago se acuerdan por WhatsApp. Esta página no procesa pagos en línea.</p>
+            <button class="btn btn--primary mt-lg" type="submit" style="margin-top:22px">Revisar pedido</button>
+          </div>
+        </form>
+
+        <aside class="sticky-panel">
+          <div class="panel">
+            <h2>Tu pedido</h2>
+            <div class="add-line">
+              <label class="sr-only" for="add-product">Agregar un postre</label>
+              <select class="select" id="add-product"></select>
+              <button class="btn btn--ghost btn--sm" type="button" id="add-line">Agregar</button>
+            </div>
+            <p class="err" id="items-error" style="display:block;margin:-6px 0 12px" hidden>Agrega al menos un postre a tu pedido.</p>
+            <div id="order-items"></div>
+            <div id="order-totals"></div>
+            <p style="margin:16px 0 0"><button class="rm" type="button" id="clear-cart" hidden>Vaciar pedido</button></p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <div class="modal" id="review-modal" role="dialog" aria-modal="true" aria-labelledby="review-title" aria-hidden="true">
+      <div class="modal-box">
+        <div class="modal-head"><h2 id="review-title">Revisa tu pedido</h2><button class="icon-btn" type="button" id="modal-close" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+        <p class="alert" id="no-number-alert" hidden>Aún no se configuró el número de WhatsApp del negocio. Al enviar, WhatsApp te dejará elegir el contacto.</p>
+        <dl class="review-list" id="review-details"></dl>
+        <div id="review-items"></div>
+        <p style="margin:18px 0 8px;font-weight:500">Mensaje que se enviará</p>
+        <pre class="msg-preview" id="review-msg"></pre>
+        <div class="modal-actions">
+          <button class="btn btn--primary" type="button" id="send-wa">Enviar por WhatsApp</button>
+          <button class="btn btn--ghost" type="button" id="copy-msg">Copiar mensaje</button>
+          <button class="btn btn--ghost" type="button" id="modal-back">Volver a editar</button>
+        </div>
+        <p class="form-note" style="margin-top:14px">Tu pedido se completa cuando lo envías desde WhatsApp y se confirma contigo por ese medio.</p>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

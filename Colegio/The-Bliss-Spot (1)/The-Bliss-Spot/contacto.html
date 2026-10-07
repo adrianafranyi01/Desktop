@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacto · The Bliss Spot</title>
+  <meta name="description" content="Contacta a The Bliss Spot por WhatsApp, Instagram o correo.">
+  <meta name="theme-color" content="#8e1f3f">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&amp;family=Jost:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body data-page="contacto">
+  <a class="sr-only" href="#contenido">Saltar al contenido</a>
+  <div id="site-header"></div>
+
+  <main id="contenido">
+    <section class="page-hero">
+      <div class="container">
+        <span class="crumbs">Contacto</span>
+        <h1>Hablemos de postres</h1>
+        <p>Escríbeme para hacer un pedido, resolver una duda o contarme qué se te antoja.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:10px">
+      <div class="container">
+        <div class="contact-grid reveal" id="contact-cards"></div>
+      </div>
+    </section>
+
+    <section class="section section--blush scallop-top">
+      <div class="container split">
+        <div class="reveal">
+          <span class="gold-rule"></span>
+          <h2>Envíame un mensaje</h2>
+          <p class="lead">Completa tu nombre y tu mensaje; se abrirá WhatsApp con el texto listo para enviar.</p>
+        </div>
+        <form class="panel reveal" id="quick-form" novalidate>
+          <div class="field"><label for="q-nombre">Nombre</label><input class="input" id="q-nombre" type="text" autocomplete="name" placeholder="Tu nombre"><span class="err">Escribe tu nombre.</span></div>
+          <div class="field"><label for="q-mensaje">Mensaje</label><textarea class="textarea" id="q-mensaje" placeholder="¿En qué te puedo ayudar?"></textarea><span class="err">Escribe tu mensaje.</span></div>
+          <button class="btn btn--primary" type="submit">Enviar por WhatsApp</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
